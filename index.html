@@ -17,10 +17,32 @@
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 </head>
+
+<body>
+
 <audio id="birthdaySong" loop>
   <source src="birthday.mp3" type="audio/mpeg">
 </audio>
-<body>
+    
+    <div id="musicPopup" style="
+position: fixed;
+top:0; left:0;
+width:100%; height:100%;
+background:rgba(0,0,0,0.7);
+display:flex;
+align-items:center;
+justify-content:center;
+z-index:9999;
+">
+
+  <div style="background:white;padding:30px;border-radius:10px;text-align:center;">
+    <h2>🎵 Tap to Play Music</h2>
+    <button onclick="startMusic()">Play Song</button>
+  </div>
+
+</div>
+
+    
     <div id="wrapper">
         <div class="flag__birthday">
             <img src="./images/1.png" alt="" width="350" class="flag__left">
@@ -170,6 +192,15 @@
     let currentIndex = 0;
     let currentIndexLetter = 0;
     let currentIndexTitle = 0;
+  // 🎵 MUSIC FUNCTION
+function startMusic() {
+  const song = document.getElementById("birthdaySong");
+  song.play().catch(() => {
+    alert("Tap the button to play music 🎵");
+  });
+  document.getElementById("musicPopup").style.display = "none";
+}
+
     let date__of__birth = document.querySelector(".date__of__birth span");
     let text__letter = document.querySelector(".text__letter p");
     setTimeout(function () {
